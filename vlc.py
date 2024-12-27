@@ -53,6 +53,7 @@ def send_info():
         return
     print("Reloading")
     a = requests.get("http://"+host+"/requests/status.xml", auth=("", password))
+    a.encoding = "utf-8"
     text = ""
     
     if a.status_code != 200:
@@ -82,7 +83,6 @@ def send_info():
         if item["@name"] == "title":
             title = item["#text"]
     text = f"{ 'PLAYING' if state else 'PAUSED' } {artist} - {title} ({format_time(current_time)} / {format_time(length)} {round(pos * 100, 2)}%) "
-    print(text)
     set_text(target_text_name, text)
 
 def format_time(seconds: float):
@@ -96,10 +96,7 @@ def format_time(seconds: float):
     return f"{int(minutes)}:{a}"
 
 def set_text(target: str, text: str):
-    source = obspython.obs_get_source_by_name(target) # none?
-    print(source)
+    source = obspython.obs_get_source_by_name(target)
     settings =  obspython.obs_data_create()
-    print(settings)
     obspython.obs_data_set_string(settings, "text", text)
-    print(settings)
     obspython.obs_source_update(source, settings)
