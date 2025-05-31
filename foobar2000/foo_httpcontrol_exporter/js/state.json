@@ -1,0 +1,10 @@
+﻿{
+    "isPlaying": "[IS_PLAYING]",
+    "isPaused": "[IS_PAUSED]",   
+    "title": "[HELPER1X]",
+    "artist": "[HELPER2X]",
+    "album": "[HELPER3X]",
+    "albumArt": "[ALBUMART]",
+    "length": "[HELPER4X]",
+    "currentTime": "[HELPER5X]"
+}
