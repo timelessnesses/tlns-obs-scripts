@@ -1,4 +1,4 @@
-﻿{
+{
     "isPlaying": "[IS_PLAYING]",
     "isPaused": "[IS_PAUSED]",   
     "title": "[HELPER1X]",
@@ -6,5 +6,5 @@
     "album": "[HELPER3X]",
     "albumArt": "[ALBUMART]",
     "length": "[HELPER4X]",
-    "currentTime": "[HELPER5X]"
+    "currentTime": "[ITEM_PLAYING_POS]"
 }
