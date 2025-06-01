@@ -77,14 +77,20 @@ def network_thread_func():
             print("Not enabled")
             continue
         print("Reloading")
-        a = requests.get("http://"+host+"/exporting/?param3=js/state.json")
+        try:
+            a = requests.get("http://"+host+"/exporting/?param3=js/state.json")
+        except:
+            print("Failed to connect OR no FB2K running")
+            result_text = "Foobar2000 is not responsive... Are you sure it's running? Does it have foo_httpcontrol enabled?"
+            result_album_image = os.path.realpath(__file__) + "/foo_httpcontrol_exporter/img/icon1rx.png"
+            continue
         a.encoding = "utf-8"
         text = ""
         
         if a.status_code != 200:
-            print(f"Failed to authenticate OR no VLC running: {a}")
-            text = "Is VLC Running?"
-            set_text(target_text_name, text, "", target_album_image)
+            print(f"Failed to authenticate OR no FB2K running: {a}")
+            result_text = "Foobar2000 is not responding right... Are you sure it's running? Does it have foo_httpcontrol enabled?"
+            result_album_image = os.path.realpath(__file__) + "/foo_httpcontrol_exporter/img/icon1rx.png"
             return
 
         print(a.text)
